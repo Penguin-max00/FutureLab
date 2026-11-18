@@ -1,0 +1,150 @@
+/* One global viewport backdrop, independent of page length and application stacking. */
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: clip;
+  contain: strict;
+  background: var(--background);
+}
+.ambient-wash {
+  position: absolute;
+  inset: -12%;
+  transform-origin: center;
+  will-change: transform;
+}
+.ambient-primary {
+  background:
+    radial-gradient(
+      ellipse at 22% 30%,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 54%
+    ),
+    radial-gradient(ellipse at 76% 77%, var(--ambient-a), transparent 48%);
+  animation: ambient-flow-primary 28s ease-in-out -7s infinite alternate;
+}
+.ambient-secondary {
+  background:
+    radial-gradient(
+      ellipse at 82% 25%,
+      color-mix(in srgb, var(--accent-b) 12%, transparent),
+      transparent 50%
+    ),
+    linear-gradient(
+      118deg,
+      transparent 35%,
+      color-mix(in srgb, var(--accent) 4%, transparent) 52%,
+      transparent 68%
+    );
+  animation: ambient-flow-secondary 38s ease-in-out -19s infinite alternate;
+}
+/* Animate layer transforms; keep gradient definitions and document geometry fixed. */
+@keyframes ambient-flow-primary {
+  0% {
+    transform: translate3d(-4%, -3%, 0) rotate(-4deg) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, 2%, 0) rotate(2deg) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-1%, 5%, 0) rotate(-1deg) scale(1.08);
+  }
+}
+@keyframes ambient-flow-secondary {
+  0% {
+    transform: translate3d(4%, -2%, 0) rotate(3deg) scale(1.06);
+  }
+  50% {
+    transform: translate3d(-4%, 3%, 0) rotate(-3deg) scale(1);
+  }
+  100% {
+    transform: translate3d(2%, -4%, 0) rotate(1deg) scale(1.04);
+  }
+}
+.ambient-background[data-running='false'] .ambient-wash {
+  animation-play-state: paused;
+}
+[data-motion='reduced'] .ambient-wash {
+  animation: none;
+  will-change: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-wash {
+    animation: none;
+    will-change: auto;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .ambient-background {
+    display: none;
+  }
+}
+/* A readable, soft spotlight follows the native pointer without replacing it. */
+:root {
+  --pointer-core: color-mix(in srgb, var(--accent) 44%, transparent);
+  --pointer-mid: color-mix(in srgb, var(--accent) 19%, transparent);
+  --pointer-edge: color-mix(in srgb, var(--accent-b) 12%, transparent);
+  --pointer-reflection: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+:root[data-theme='light'] {
+  --pointer-core: color-mix(in srgb, var(--accent) 25%, transparent);
+  --pointer-mid: color-mix(in srgb, var(--accent) 12%, transparent);
+  --pointer-edge: color-mix(in srgb, var(--accent-b) 7%, transparent);
+  --pointer-reflection: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+.pointer-halo,
+.pointer-reflection {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+  transition: opacity 240ms ease-out;
+}
+.pointer-halo {
+  width: 640px;
+  height: 640px;
+  left: -320px;
+  top: -320px;
+  background: radial-gradient(
+    circle,
+    var(--pointer-core) 0%,
+    var(--pointer-mid) 24%,
+    var(--pointer-edge) 44%,
+    transparent 69%
+  );
+}
+.pointer-reflection-layer {
+  position: fixed;
+  inset: 0;
+  overflow: clip;
+  pointer-events: none;
+  z-index: 4;
+  contain: strict;
+}
+.pointer-reflection {
+  width: 420px;
+  height: 420px;
+  left: -210px;
+  top: -210px;
+  background: radial-gradient(
+    circle,
+    var(--pointer-reflection),
+    transparent 68%
+  );
+}
+.pointer-halo[data-visible='true'],
+.pointer-reflection[data-visible='true'] {
+  opacity: 1;
+}
+[data-motion='reduced'] .pointer-halo,
+[data-motion='reduced'] .pointer-reflection-layer {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce),
+  (prefers-reduced-transparency: reduce) {
+  .pointer-halo,
+  .pointer-reflection-layer {
+    display: none;
+  }
+}

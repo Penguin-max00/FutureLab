@@ -1,0 +1,88 @@
+/* A theme-colored focal frame for the workspace's primary projection only. */
+@property --chart-focus-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.results-section > .projection {
+  position: relative;
+  isolation: isolate;
+  border-radius: 16px;
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 5%, transparent),
+    0 0 34px color-mix(in srgb, var(--accent) 13%, transparent),
+    0 20px 48px var(--shadow),
+    inset 0 1px 0 var(--sheen);
+}
+
+.results-section > .projection::before,
+.results-section > .projection::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.results-section > .projection::before {
+  inset: -2px;
+  border-radius: 17px;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--chart-focus-angle),
+    transparent 0%,
+    var(--accent-b) 14%,
+    transparent 28%,
+    transparent 46%,
+    var(--accent) 64%,
+    transparent 80%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.85;
+  animation: chart-focus-orbit 14s linear infinite;
+}
+
+.results-section > .projection::after {
+  inset: -6px;
+  border-radius: 21px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent-b) 12%, transparent);
+  animation: chart-focus-breathe 6s ease-in-out infinite;
+}
+
+.results-section > .projection:focus-within::before {
+  opacity: 1;
+}
+
+@keyframes chart-focus-orbit {
+  to {
+    --chart-focus-angle: 360deg;
+  }
+}
+@keyframes chart-focus-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+[data-motion='reduced'] .results-section > .projection::before,
+[data-motion='reduced'] .results-section > .projection::after {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .results-section > .projection::before,
+  .results-section > .projection::after {
+    animation: none;
+  }
+}

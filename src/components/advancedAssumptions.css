@@ -1,0 +1,37 @@
+.advanced-assumptions {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.advanced-assumptions > summary {
+  cursor: pointer;
+  color: var(--text);
+  font-size: 14px;
+}
+.advanced-assumptions > summary > span {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-left: 10px;
+}
+.advanced-assumptions > p {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 14px 0;
+}
+.advanced-assumptions .field-help {
+  font-size: 11px;
+  line-height: 1.6;
+}
+.education-interest-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 14px 0 0;
+  line-height: 1.7;
+}
+.budget-job-search {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 12px 0 0;
+}

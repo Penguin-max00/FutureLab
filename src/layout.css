@@ -1,0 +1,304 @@
+/* Desktop typography and spatial hierarchy. Color is controlled by theme tokens. */
+html {
+  scrollbar-gutter: stable;
+  min-height: 100%;
+  /* Prevent the browser bounce from exposing an unpainted strip past the page. */
+  overscroll-behavior-y: none;
+}
+body {
+  min-width: 1100px;
+  min-height: 100vh;
+  background: transparent;
+  overscroll-behavior-y: none;
+}
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: transparent;
+}
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page-stage {
+  flex: 1;
+  background: transparent;
+}
+.topbar {
+  height: 68px;
+  gap: 44px;
+}
+.topbar nav {
+  flex-shrink: 0;
+  gap: 28px;
+}
+.nav-link {
+  white-space: nowrap;
+  font-size: 12px;
+}
+.topbar-end {
+  margin-left: auto;
+  min-width: 150px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+}
+.design-credit {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.brand {
+  font-size: 22px;
+}
+.beta {
+  display: none;
+}
+.landing {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 68px);
+  max-width: 1440px;
+  padding: 0 6%;
+}
+.hero {
+  padding: 88px 0 76px;
+  gap: 7%;
+  grid-template-columns: 1fr 1.08fr;
+}
+.hero h1 {
+  font-size: clamp(42px, 4.5vw, 66px);
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+  margin: 24px 0;
+}
+.hero .eyebrow {
+  font-size: 9px;
+  letter-spacing: 1.4px;
+}
+.hero-description {
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0 0 30px;
+}
+.hero-footnote {
+  font-size: 11px;
+  margin-top: 18px;
+}
+.hero-preview {
+  transform: none;
+}
+.hero-preview::before {
+  display: none;
+}
+.preview-toolbar {
+  height: 40px;
+  font-size: 8px;
+}
+.preview-bottom {
+  padding: 13px 22px;
+  font-size: 10px;
+}
+.how-section {
+  padding: 30px 0 42px;
+}
+.steps {
+  margin-top: 0;
+  gap: 42px;
+}
+.steps article {
+  border-top: 0;
+  padding-top: 0;
+}
+.steps h3 {
+  font-size: 17px;
+  margin: 18px 0 8px;
+  letter-spacing: -0.3px;
+}
+.steps p {
+  font-size: 12px;
+}
+.landing-footer {
+  margin-top: auto;
+  padding: 23px 0 100px;
+  font-size: 11px;
+}
+.workspace {
+  min-height: calc(100vh - 68px);
+}
+.sidebar {
+  width: 174px;
+  padding: 35px 14px;
+  /* Dissolve the navigation tint into the shared backdrop near the page end. */
+  background: linear-gradient(
+    to bottom,
+    var(--sidebar-bg) 0%,
+    var(--sidebar-bg) calc(100% - 220px),
+    transparent 100%
+  );
+}
+.side-link {
+  font-size: 12px;
+}
+.sidebar-label {
+  font-size: 9px;
+  letter-spacing: 1.4px;
+}
+.model-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  padding: 0 4px;
+}
+.local-status {
+  font-size: 10px;
+  line-height: 1.6;
+}
+.workspace-content {
+  width: calc(100% - 174px);
+  padding: 32px 32px 0;
+}
+.workspace-heading {
+  align-items: center;
+  min-height: 42px;
+}
+.workspace-heading h1 {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -0.9px;
+}
+.reset-area {
+  padding-top: 0;
+  align-self: center;
+}
+.illustration-note {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin-top: 12px;
+  gap: 9px;
+  font-size: 11px;
+}
+.metrics-grid {
+  margin: 26px 0 30px;
+  gap: 12px;
+}
+.metric {
+  padding: 19px 18px 18px;
+}
+.metric-label {
+  font-size: 11px;
+}
+.metric-values {
+  margin: 17px 0 0;
+  gap: 10px;
+}
+.metric-values strong {
+  font-size: 25px;
+  line-height: 1.15;
+}
+.section-heading {
+  margin-bottom: 16px;
+}
+.section-heading h2 {
+  font-size: 15px;
+}
+.quiet-badge {
+  font-size: 9px;
+  letter-spacing: 0.4px;
+}
+.college-name {
+  font-size: 16px;
+}
+.field label {
+  font-size: 11px;
+}
+.input-shell {
+  min-height: 38px;
+}
+.input-shell input {
+  font-size: 13px;
+}
+.input-shell span {
+  font-size: 10px;
+}
+.chart-header h2 {
+  font-size: 17px;
+  margin-top: 0;
+}
+.chart-controls {
+  margin-top: 20px;
+}
+.chart-legend {
+  font-size: 10px;
+}
+.preview-chart .chart-canvas {
+  height: 245px;
+}
+.results-section .chart-canvas {
+  height: 285px;
+}
+.outcome-strip {
+  margin-top: 16px;
+}
+.outcome-strip strong {
+  font-size: 23px;
+}
+.outcome-strip span,
+.outcome-strip small {
+  font-size: 10px;
+}
+.next-section {
+  padding: 16px 0 0;
+  font-size: 11px;
+}
+.workspace-footer {
+  padding-bottom: 100px;
+  font-size: 10px;
+}
+@media (min-width: 1650px) {
+  .workspace-content {
+    padding: 38px 44px 0;
+  }
+  .metric-values strong {
+    font-size: 29px;
+  }
+  .results-section .chart-canvas {
+    height: 340px;
+  }
+}
+@media (max-width: 1250px) {
+  .workspace-content {
+    padding: 28px 26px 0;
+  }
+  .hero {
+    padding: 65px 0;
+    gap: 5%;
+  }
+  .metric {
+    padding: 17px 13px;
+  }
+  .metric-values strong {
+    font-size: 23px;
+  }
+  .main-grid {
+    gap: 22px;
+  }
+}
+
+/* Currency wrappers inherit the amount typography, not the small outcome labels. */
+.outcome-strip strong .animated-money,
+.outcome-strip strong .animated-money > span {
+  display: inline;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}

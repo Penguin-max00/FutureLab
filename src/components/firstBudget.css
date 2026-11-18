@@ -1,0 +1,124 @@
+.first-budget {
+  margin-top: 18px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--glass-surface);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.first-budget-heading h2 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 550;
+  letter-spacing: -0.3px;
+}
+.first-budget-heading > span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+.first-budget-table {
+  white-space: normal;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+.first-budget-table th,
+.first-budget-table td {
+  position: static;
+  background: transparent;
+  padding: 10px 0;
+  border: 0;
+  text-align: right;
+}
+.first-budget-table tr > :first-child {
+  width: 35%;
+  text-align: left;
+  padding-right: 10px;
+}
+.first-budget-table tbody th {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+.first-budget-table tbody td {
+  color: var(--text);
+}
+.first-budget-table .animated-money {
+  white-space: nowrap;
+}
+.budget-college {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+.budget-college b {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+}
+.budget-college > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.first-budget-table .budget-balance > * {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  padding-bottom: 8px;
+  vertical-align: top;
+}
+.first-budget-table .budget-balance th {
+  color: var(--text);
+  font-weight: 500;
+}
+.budget-balance strong {
+  font-size: 1.25rem;
+  font-weight: 550;
+  letter-spacing: -0.4px;
+}
+.budget-balance small {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.first-budget-table td.budget-shortfall,
+.budget-shortfall small {
+  color: var(--error);
+}
+.budget-details {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+.budget-details summary {
+  width: fit-content;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.budget-details summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.budget-tax-table {
+  margin-top: 8px;
+}
+.budget-details p,
+.budget-footnote {
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.budget-details p {
+  margin: 10px 0 0;
+}
+.budget-footnote {
+  margin: 14px 0 0;
+}
