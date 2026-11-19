@@ -48,7 +48,7 @@ export function NumberField({
         {label}
       </label>
       <div className={`input-shell ${error ? 'invalid' : ''}`}>
-        <span>{unit === 'year' || unit === 'total' ? '$' : ''}</span>
+        <span>{['year', 'total', 'month'].includes(unit) ? '$' : ''}</span>
         <input
           id={id}
           type="number"
@@ -85,7 +85,13 @@ export function NumberField({
           }}
         />
         <span>
-          {unit === 'year' ? '/ yr' : unit === 'total' ? 'total' : unit}
+          {unit === 'year'
+            ? '/ yr'
+            : unit === 'total'
+              ? 'total'
+              : unit === 'month'
+                ? '/ mo'
+                : unit}
         </span>
       </div>
       {hint && (

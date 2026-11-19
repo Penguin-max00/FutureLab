@@ -23,10 +23,12 @@ export function ProjectionChart({
   results,
   names,
   preview = false,
+  simple = false,
 }: {
   results: SimulationResult[];
   names: string[];
   preview?: boolean;
+  simple?: boolean;
 }) {
   const { enabled } = useMotion();
   const [metric, setMetric] = useState<Metric>('netWorth');
@@ -78,21 +80,23 @@ export function ProjectionChart({
           <span className="quiet-badge">{years}-year projection</span>
         )}
       </div>
-      <div className="chart-controls">
-        <SegmentedControl
-          label="Chart metric"
-          value={metric}
-          onChange={(next) => {
-            setAnimate(true);
-            setMetric(next);
-          }}
-          options={metrics.map((m) => ({ value: m.key, label: m.label }))}
-        />
-      </div>
+      {!simple && (
+        <div className="chart-controls">
+          <SegmentedControl
+            label="Chart metric"
+            value={metric}
+            onChange={(next) => {
+              setAnimate(true);
+              setMetric(next);
+            }}
+            options={metrics.map((m) => ({ value: m.key, label: m.label }))}
+          />
+        </div>
+      )}
       <div
         className="chart-canvas"
         role="img"
-        aria-label={`${metrics.find((m) => m.key === metric)?.label} over ${years} years from ${enrollment ? 'enrollment' : 'graduation'} for ${names.join(' and ')}. Exact values are available in the results and monthly ledger.`}
+        aria-label={`${metrics.find((m) => m.key === metric)?.label} over ${years} years from ${enrollment ? 'enrollment' : 'graduation'} for ${names.join(' and ')}. ${simple ? 'End values are listed below the chart.' : 'Exact values are available in the results and monthly ledger.'}`}
       >
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
