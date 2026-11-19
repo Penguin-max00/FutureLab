@@ -4,6 +4,8 @@
 
 A local-first college financial decision simulator built for students. Compare up to four college paths, edit the assumptions, and inspect how debt, cash, and simplified net worth develop after graduation. All example colleges and numbers are fictional.
 
+Current version: **V2 · 2.0.0**. See [CHANGELOG.md](CHANGELOG.md) for version notes.
+
 ## Run locally
 
 Requires Node.js 22+ and npm. From this directory:
@@ -24,6 +26,8 @@ npm run format:check # verify source formatting
 ```
 
 ## First version
+
+Quick Estimate, beside Main Workspace, offers a separate five-input comparison: graduation debt and starting salary for two colleges, plus shared monthly living expenses. It shows a ten-year net-worth chart and estimated monthly loan payments. College names are editable inline and persist separately under `futurelab.quick-estimate.names.v1`; charts and results use those names. Zero amounts clears all five amounts while retaining names, with an in-session Undo until the next amount edit. Its fixed assumptions are disclosed in the view; inputs persist separately under `futurelab.quick-estimate.v1` and do not alter the full workspace. Missing or invalid amounts withhold results; zero amounts are supported.
 
 - Landing page with a live preview of the current comparison.
 - Two to four editable college paths; fictional example data and explicit input validation.

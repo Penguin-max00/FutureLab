@@ -9,11 +9,16 @@ import type { SimulationResult } from './engine/types';
 import { useWorkspace } from './state/useWorkspace';
 import { Landing } from './components/Landing';
 import { Workspace } from './components/Workspace';
+import { QuickEstimate } from './components/QuickEstimate';
 import { ThemeToggle } from './theme/ThemeToggle';
 import { Button } from './components/ui/button';
 export default function App() {
-  const [view, setView] = useState<'home' | 'workspace'>(() =>
-    ['#explore', '#model-notes'].includes(location.hash) ? 'workspace' : 'home',
+  const [view, setView] = useState<'home' | 'workspace' | 'quick'>(() =>
+    location.hash === '#quick-estimate'
+      ? 'quick'
+      : ['#explore', '#model-notes'].includes(location.hash)
+        ? 'workspace'
+        : 'home',
   );
   const session = useWorkspace();
   const { workspace, setWorkspace, reset, notice } = session;
@@ -25,13 +30,17 @@ export default function App() {
       ) as SimulationResult[],
     [workspace],
   );
-  function navigate(next: 'home' | 'workspace') {
+  function navigate(next: 'home' | 'workspace' | 'quick') {
     if (next === view) return;
     setView(next);
     history.replaceState(
       null,
       '',
-      next === 'workspace' ? '#explore' : location.pathname,
+      next === 'workspace'
+        ? '#explore'
+        : next === 'quick'
+          ? '#quick-estimate'
+          : location.pathname,
     );
   }
   // Reset scroll after the destination DOM commits, before the browser paints.
@@ -71,6 +80,13 @@ export default function App() {
           >
             Main Workspace
           </button>
+          <button
+            aria-current={view === 'quick' ? 'page' : undefined}
+            className={view === 'quick' ? 'nav-link active' : 'nav-link'}
+            onClick={() => navigate('quick')}
+          >
+            Quick Estimate
+          </button>
         </nav>
         <div className="topbar-end">
           <span className="design-credit">Design By Ruiwen</span>
@@ -85,7 +101,7 @@ export default function App() {
           ) : (
             <span className="workspace-indicator">
               <GitCompareArrows size={15} />
-              College comparison
+              {view === 'quick' ? 'A simpler first look' : 'College comparison'}
             </span>
           )}
         </div>
@@ -130,6 +146,9 @@ export default function App() {
               dismissHint={session.dismissHint}
             />
           )}
+        </Activity>
+        <Activity mode={view === 'quick' ? 'visible' : 'hidden'}>
+          <QuickEstimate onOpenWorkspace={() => navigate('workspace')} />
         </Activity>
       </div>
     </>

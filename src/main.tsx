@@ -13,6 +13,7 @@ import './components/onboarding.css';
 import './components/careers.css';
 import './components/multiCollege.css';
 import './components/chartFocus.css';
+import './components/quickEstimate.css';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
